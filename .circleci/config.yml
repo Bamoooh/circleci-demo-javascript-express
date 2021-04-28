@@ -19,6 +19,10 @@ jobs:
     <<: *defaults
     steps: 
       - print-id
+      - run: return 1
+      - run: 
+          command: echo "workflow failed"
+          when: on_fail
   saveworld:
     docker:
       - image: circleci/node:13.8.0
