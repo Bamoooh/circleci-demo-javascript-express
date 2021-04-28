@@ -7,12 +7,30 @@ workflows:
       - build
 
 jobs:
+  saveworld:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run: echo "hi" > output.txt 
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - output.txt
+  getworld:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run: cat output.txt
+    
   build:
     working_directory: ~/mern-starter
     docker:
       - image: circleci/node:10.16.3
       - image: mongo:4.2.0
-    steps:
+
+    steps:    
       - checkout
       - run:
           name: update-npm
