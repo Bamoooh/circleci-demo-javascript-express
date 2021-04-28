@@ -18,7 +18,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - ~/output.txt
+            - output.txt
   getworld:
     docker:
       - image: circleci/node:13.8.0
