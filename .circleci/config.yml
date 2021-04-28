@@ -14,18 +14,18 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: echo "hi" > output.txt 
+      - run: echo "hi" > ~/output.txt 
       - persist_to_workspace:
           root: ~/
           paths:
-            - output.txt
+            - ~/output.txt
   getworld:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - attach_workspace:
           at: ~/
-      - run: cat output.txt
+      - run: cat ~/output.txt
     
   build:
     working_directory: ~/mern-starter
